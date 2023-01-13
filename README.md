@@ -1,3 +1,0 @@
-# Zomato-Clone-Server
-
-srihari
