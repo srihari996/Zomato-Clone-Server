@@ -10,7 +10,7 @@ const zomato = express();
 zomato.use(express.json());
 
 
-zomato.get("/", (req, res) => {
+zomato.get("/", (req, res) => { 
     res.json({
       message: "Server is running..",
     });
