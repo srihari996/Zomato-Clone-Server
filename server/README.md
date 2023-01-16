@@ -19,3 +19,4 @@ npm i --save-dev nodemon @babel/cli, @babel/core and @babel/preset-env @babel/no
 # API Planning
 
 = Food (Food items & their details)
+- food
