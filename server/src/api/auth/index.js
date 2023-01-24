@@ -2,11 +2,20 @@ import express from "express";
 import passport from "passport";
 
 import { UserModel } from "../../database/allModels";
-import { ValidateSignup, ValidateSignin } from "../../validation/auth.validation";
+import {
+  ValidateSignin,
+  ValidateSignup,
+} from "../../validation/auth.validation";
 
 const Router = express.Router();
 
-// sorted the issue
+/**
+ * Route     /signup
+ * Des       Create new account
+ * Params    none
+ * Access    Public
+ * Method    POST
+ */
 Router.post("/signup", async (req, res) => {
   try {
     await ValidateSignup(req.body.credentials);
@@ -19,6 +28,13 @@ Router.post("/signup", async (req, res) => {
   }
 });
 
+/**
+ * Route     /signin
+ * Des       Login to existing account
+ * Params    none
+ * Access    Public
+ * Method    POST
+ */
 Router.post("/signin", async (req, res) => {
   try {
     await ValidateSignin(req.body.credentials);
@@ -44,9 +60,14 @@ Router.get(
   "/google/callback",
   passport.authenticate("google", { failureRedirect: "/" }),
   (req, res) => {
-  return res.redirect(
-    `http://localhost:3000/google/${req.session.passport.user.token}`
-  );
+    // return res.status(200).json({
+    //   token: req.session.passport.user.token,
+    // });
+
+    return res.redirect(
+      `http://localhost:3000/google/${req.session.passport.user.token}`
+    );
   }
 );
+
 export default Router;
